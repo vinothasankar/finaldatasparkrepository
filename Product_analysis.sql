@@ -9,11 +9,14 @@ ORDER BY total_sales DESC;
 
 -- Product Popularity: Identify the most and least popular products based on sales data.
 
-select distinct(product_name),sum(quantity) as Quantity
-from allinone
-group by product_name
-order by Quantity desc
-limit 1;
+SELECT DISTINCT 
+    product_name, 
+    SUM(quantity) OVER (PARTITION BY product_name) AS Quantity
+FROM 
+    allinone
+ORDER BY 
+    Quantity DESC
+LIMIT 1;
 
 select distinct(product_name),sum(quantity) as Quantity
 from allinone

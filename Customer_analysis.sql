@@ -1,6 +1,6 @@
-SELECT gender, COUNT(*) AS Count_gender
-FROM customers
-GROUP BY gender;
+SELECT DISTINCT gender, 
+       COUNT(*) OVER (PARTITION BY gender) AS Count_gender
+FROM customers;
 
 -- Age bucketing
 SELECT

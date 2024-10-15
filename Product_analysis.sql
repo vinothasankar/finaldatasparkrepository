@@ -18,11 +18,14 @@ ORDER BY
     Quantity DESC
 LIMIT 1;
 
-select distinct(product_name),sum(quantity) as Quantity
-from allinone
-group by product_name
-order by Quantity 
-limit 1;
+SELECT DISTINCT 
+    product_name, 
+    SUM(quantity) OVER (PARTITION BY product_name) AS Quantity
+FROM 
+    allinone
+ORDER BY 
+    Quantity 
+LIMIT 1;
 
 -- Profitability Analysis: Calculate profit margins for products by comparing  unit cost and unit price.
 
